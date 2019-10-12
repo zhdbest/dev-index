@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <base target="_blank" />
+        <link rel="icon" href="http://guide.zhaohaodong.com/navigate_128px_1192156_easyicon.net.png">
+        <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+        <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+        <script type="application/javascript" src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+        <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+        <script type="application/javascript" src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <title>开发导航</title>
+        <style>
+            table.lamp {
+                width: 100%;
+            }
+            table.lamp th, td {
+                padding:10px;
+            }
+            table.lamp td {
+                width: 25%;
+            }
+
+            .text-gray {
+                color: #555
+            }
+
+            table.lamp a {
+                color: #0099cc
+            }
+
+            table.lamp a:hover {
+                color: #336699
+            }
+
+            .div-block {
+                margin-left: 10%;
+                margin-right: 10%
+            }
+
+            a:focus{text-decoration: none}
+        </style>
+    </head>
+    <body>
+        <div id="model" hidden>
+            <div class="panel-heading" id="panel-heading">
+                <h4 class="panel-title">
+                    <!-- 若想打开一个面板时其他面板折叠起来，则可以在下面的a标签中添加：data-parent="#accordion" -->
+                    <a id="menu" data-toggle="collapse" href="#collapse">
+
+                    </a>
+                </h4>
+            </div>
+            <div id="collapse" class="panel-collapse collapse in">
+                <div class="panel-body">
+                    <table id="menu-table" class="lamp">
+
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel-group div-block" id="accordion">
+            <div id="panel" class="panel panel-default">
+
+            </div>
+        </div>
+        <script>
+            var jsonData = {
+                "module": [
+                    {
+                        "id": "dev-tools",
+                        "name": "开发常用",
+                        "menu": [
+                            {
+                                "id": "github",
+                                "name": "GitHub",
+                                "url": "https://github.com/",
+                                "desc": ""
+                            },
+                            {
+                                "id": "jsoneditor",
+                                "name": "JSON在线编辑",
+                                "url": "http://www.kjson.com/jsoneditor/",
+                                "desc": ""
+                            },
+                            {
+                                "id": "codeif",
+                                "name": "CodeIf",
+                                "url": "https://codeif.xinke.org.cn/",
+                                "desc": "变量命名助手"
+                            },
+                            {
+                                "id": "mvnrepository",
+                                "name": "Maven Repository",
+                                "url": "https://mvnrepository.com/",
+                                "desc": "Maven 仓库"
+                            }
+                        ]
+                    },
+                    {
+                        "id" : "blog",
+                        "name" : "博客论坛",
+                        "menu" : [
+                            {
+                                "id": "aliyun",
+                                "name": "阿里云中间件团队博客",
+                                "url": "http://jm.taobao.org/",
+                                "desc": ""
+                            },
+                            {
+                                "id": "yunqi",
+                                "name": "云栖社区",
+                                "url": "https://yq.aliyun.com/",
+                                "desc": ""
+                            },
+                            {
+                                "id": "v2ex",
+                                "name": "V2EX",
+                                "url": "https://www.v2ex.com/",
+                                "desc": ""
+                            },
+                            {
+                                "id": "meituan",
+                                "name": "美团技术团队",
+                                "url": "https://tech.meituan.com/",
+                                "desc": ""
+                            },
+                            {
+                                "id": "StackOverflow",
+                                "name": "Stack Overflow",
+                                "url": "https://stackoverflow.com/",
+                                "desc": ""
+                            },
+                            {
+                                "id": "oschina",
+                                "name": "开源中国",
+                                "url": "https://www.oschina.net/",
+                                "desc": ""
+                            },
+                            {
+                                "id": "linuxcn",
+                                "name": "Linux中国",
+                                "url": "https://linux.cn/",
+                                "desc": ""
+                            }
+                        ]
+                    },
+                    {
+                        "id": "server",
+                        "name": "服务器相关",
+                        "menu": [
+                            {
+                                "id": "qiniu",
+                                "name": "七牛云",
+                                "url": "https://portal.qiniu.com",
+                                "desc": "内容存储解决方案"
+                            },
+                            {
+                                "id": "ecs",
+                                "name": "阿里云ECS工作台",
+                                "url": "https://ecs.console.aliyun.com/#/home",
+                                "desc": ""
+                            }
+                        ]
+                    },
+                    {
+                        "id": "study",
+                        "name": "能力提升",
+                        "menu": [
+                            {
+                                "id": "shiyanlou",
+                                "name": "实验楼",
+                                "url": "https://www.shiyanlou.com/",
+                                "desc": ""
+                            },
+                            {
+                                "id": "leetcode",
+                                "name": "LeetCode",
+                                "url": "https://leetcode-cn.com/",
+                                "desc": "刷算法题"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "resources",
+                        "name": "资源",
+                        "menu": [
+                            {
+                                "id": "chongbuluo",
+                                "name": "快搜",
+                                "url": "https://search.chongbuluo.com/",
+                                "desc": ""
+                            },
+                            {
+                                "id": "pexels",
+                                "name": "Pexels",
+                                "url": "https://www.pexels.com/zh-cn/",
+                                "desc": "免费的图片资源网站"
+                            },
+                            {
+                                "id": "easyIcon",
+                                "name": "EasyIcon",
+                                "url": "https://www.easyicon.net/",
+                                "desc": "免费的图标网站"
+                            },
+							{
+                                "id": "iconfont",
+                                "name": "阿里巴巴矢量图标库",
+                                "url": "https://www.iconfont.cn/",
+                                "desc": ""
+							}
+                        ]
+                    },
+                    {
+                        "id": "other",
+                        "name": "其他",
+                        "menu": [
+                            {
+                                "id": "greasyfork",
+                                "name": "Greasy Fork",
+                                "url": "https://greasyfork.org/zh-CN",
+                                "desc": "这是一个提供用户脚本的网站"
+                            }
+                        ]
+                    }
+                ]
+            };
+            $(function () {
+
+                jsonData.module.forEach(function(module) {
+                    var heading = $('#panel-heading').clone();
+                    // 设置模块名称
+                    heading.find("a").html(module.name);
+                    // 设置id
+                    heading.find("a").attr("href", "#" + module.id);
+                    // 设置heading ID
+                    heading.attr("id", "_" + module.id);
+                    $('#panel').append(heading);
+                    var panel = $('#collapse').clone();
+                    // 设置id
+                    panel.attr("id", module.id);
+                    var menus = module.menu;
+                    if (menus == null || menus.length === 0) {
+                        return true;
+                    }
+
+                    panel.find('table').append(fillTable(menus, 4));
+                    $('#panel').append(panel);
+                });
+                /* 需使前面初始化好页面结构后再执行以下语句 */
+                $("[data-toggle='tooltip']").tooltip();
+            });
+
+            function fillTable(menus, num) {
+                var table = "";
+                var loopCount = Math.ceil(menus.length / num);
+                var m = 0;
+                for (var i = 1; i <= loopCount; i++) {
+                    var trArray = [];
+                    for (var n = 0; n < num; n++) {
+                        trArray.push(menus[m]);
+                        m++;
+                    }
+                    table = table + fillTr(trArray);
+                    trArray = [];
+
+                }
+                return table;
+            }
+
+            function fillTr(menus) {
+                var tds = "";
+                menus.forEach(function(menu) {
+                    tds = tds + (fillTd(menu));
+                });
+                return "<tr>" + tds + "</tr>";
+            }
+
+            function fillTd(menu) {
+                if (menu == null) {
+                    return "<td></td>";
+                }
+                return "<td><a class='btn' data-toggle='tooltip' data-trigger='hover' title='" + menu.desc + "' href='" + menu.url + "'>" + menu.name + "</a></td>";
+            }
+        </script>
+    </body>
+</html>
